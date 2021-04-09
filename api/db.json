@@ -37,6 +37,25 @@
       "clave": "123"
     }
   ],
-  "instalacion": [],
-  "reserva": []
+  "instalaciones": [
+    {
+      "id": "1",
+      "nombre": "12",
+      "precio": "1"
+    },
+    {
+      "id": "21",
+      "nombre": "21",
+      "precio": "21"
+    }
+  ],
+  "reserva": [
+    {
+      "id": "1",
+      "usuario": "pedro",
+      "instalacion": "juares",
+      "fecha": "221212",
+      "personasn": "12"
+    }
+  ]
 }

@@ -3,15 +3,15 @@
    <v-row justify="center" align="center">
         <v-col cols="12">
             <v-card flat>
-              <h1 style="text-align:center;">lista  de usuarios</h1>
+              <h1 style="text-align:center;">lista de reservas</h1>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn rounded color="rgb(30, 181,181, 0.9)" class="text-none; " to="/usuario/formulario">Registrar usuario</v-btn>
+                <v-btn rounded color="rgb(30, 181,181, 0.9)" class="text-none; " to="/reservas/reserva">agregar reserva</v-btn>
               </v-card-actions>
         
               <v-data-table
                 :headers="headers"
-                :items="usuario"
+                :items="reserva"
                 :items-per-page="5"
                 class="elevation-1"
                 >
@@ -47,7 +47,7 @@
     
     layout:"lHome",
       beforeMount(){
-          this.getUsuario();
+          this.getreserva();
       },
     data () {
       return {
@@ -57,23 +57,23 @@
             align: 'start',
             value: 'id',
           },
-          { text: 'Nombre', value: 'nombre'},
-          { text: 'Apellido', value: 'apellido'},
-          { text: 'Telefono', value: 'telefono'},
-          { text: 'Apartamento', value: 'apartamento' },
-          { text: 'Email', value: 'email' },
-          { text: 'Clave', value: 'clave' },
+          { text: 'usurario', value: 'usuario'},
+          { text: 'instalacion', value: 'instalacion'},
+          { text: 'fecha', value: 'fecha'},
+          { text: 'numero de personas', value: 'personasn'},
+
+
           { text: 'Acción', value: 'actions' }
         ],
-        usuario: [],
+        reserva: [],
       };
     },
         methods:{
-             async getUsuario()
+             async getreserva()
       {
           try {
-            let response= await this.$axios.get('http://localhost:3001/usuario')
-            this.usuario=response.data;
+            let response= await this.$axios.get('http://localhost:3001/reservas')
+            this.reserva=response.data ;
           } catch (error) {
               
           }
@@ -82,7 +82,7 @@
       
       editItem(item)
       {
-        let url= "usuario/" + item.id;
+        let url= "reservas/" + item.id;
         this.$router.push(url)
       },
       deleteItem(item)
@@ -90,7 +90,7 @@
    this.$swal.fire({
   type:"warning",
   title: 'seguro?',
-  text: "vas a borrar un registro!",
+  text: "vas a borrar una reserva!",
   icon: 'warning',
   allowEscapeKey:false,
   allowOutsideClick:false,
@@ -98,14 +98,14 @@
 }).then(async(result) => {
   if (result.value) {
     try{
-      let url='http://localhost:3001/usuario/' + item.id;
+      let url='http://localhost:3001/reservas/' + item.id ;
       let response= await this.$axios.delete(url);
       this.$swal.fire({
         type:"success",
         title:"operacion exitosa.",
-        text:"el item se elimino correctamente"
+        text:"la reserva se elimino correctamente"
       });
-      this.getUsuario();
+      this.getreserva();
     
     }catch (error){
       this.$swal.fire({

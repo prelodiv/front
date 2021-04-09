@@ -3,15 +3,15 @@
    <v-row justify="center" align="center">
         <v-col cols="12">
             <v-card flat>
-              <h1 style="text-align:center;">lista  de usuarios</h1>
+              <h1 style="text-align:center;">lista de instalaciones</h1>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn rounded color="rgb(30, 181,181, 0.9)" class="text-none; " to="/usuario/formulario">Registrar usuario</v-btn>
+                <v-btn rounded color="rgb(30, 181,181, 0.9)" class="text-none; " to="/instalaciones/llenado">agregar instalacion</v-btn>
               </v-card-actions>
         
               <v-data-table
                 :headers="headers"
-                :items="usuario"
+                :items="instalacion"
                 :items-per-page="5"
                 class="elevation-1"
                 >
@@ -47,7 +47,7 @@
     
     layout:"lHome",
       beforeMount(){
-          this.getUsuario();
+          this.getinstalacion();
       },
     data () {
       return {
@@ -58,22 +58,21 @@
             value: 'id',
           },
           { text: 'Nombre', value: 'nombre'},
-          { text: 'Apellido', value: 'apellido'},
-          { text: 'Telefono', value: 'telefono'},
-          { text: 'Apartamento', value: 'apartamento' },
-          { text: 'Email', value: 'email' },
-          { text: 'Clave', value: 'clave' },
+          { text: 'precio', value: 'precio'},
+
+
+
           { text: 'Acción', value: 'actions' }
         ],
-        usuario: [],
+        instalacion: [],
       };
     },
         methods:{
-             async getUsuario()
+             async getinstalacion()
       {
           try {
-            let response= await this.$axios.get('http://localhost:3001/usuario')
-            this.usuario=response.data;
+            let response= await this.$axios.get('http://localhost:3001/instalaciones')
+            this.instalacion=response.data ;
           } catch (error) {
               
           }
@@ -82,7 +81,7 @@
       
       editItem(item)
       {
-        let url= "usuario/" + item.id;
+        let url= "instalaciones/" + item.id;
         this.$router.push(url)
       },
       deleteItem(item)
@@ -90,7 +89,7 @@
    this.$swal.fire({
   type:"warning",
   title: 'seguro?',
-  text: "vas a borrar un registro!",
+  text: "vas a borrar una instalacion!",
   icon: 'warning',
   allowEscapeKey:false,
   allowOutsideClick:false,
@@ -98,14 +97,14 @@
 }).then(async(result) => {
   if (result.value) {
     try{
-      let url='http://localhost:3001/usuario/' + item.id;
+      let url='http://localhost:3001/instalaciones/' + item.id ;
       let response= await this.$axios.delete(url);
       this.$swal.fire({
         type:"success",
         title:"operacion exitosa.",
-        text:"el item se elimino correctamente"
+        text:"la instalacion se elimino correctamente"
       });
-      this.getUsuario();
+      this.getinstalacion();
     
     }catch (error){
       this.$swal.fire({

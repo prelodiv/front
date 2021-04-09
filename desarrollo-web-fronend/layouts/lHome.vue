@@ -75,10 +75,16 @@ data(){
             to:"/usuario/"
             },
              {
-                 id:"instalacion",
+                 id:"instalaciones",
             icon:"mdi-home-city",
-            title:"  Instalacion",
-            to:"instalacion"
+            title:"  Instalaciones",
+            to:"/instalaciones/"
+            },
+             {
+                 id:"reservas",
+            icon:"mdi-home-city",
+            title:"  Reservas",
+            to:"/reservas/"
             },
         ],
         

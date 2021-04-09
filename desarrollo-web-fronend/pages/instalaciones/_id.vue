@@ -2,60 +2,37 @@
 
 <v-container >
     <div style="margin-top:2%">
-    <h3>Edicion de usuario</h3>
+    <h3>Editar instalaciones</h3>
     <v-btn
             :disabled="!valid"
             color="rgb(30, 181,181, 0.3)"
             class="text-none"
-            to="/usuario"
+            to="/instalaciones"
             rounded
             >
             ver registro
             </v-btn>
-<v-form ref="formularioUsuario" v-model="valid" lazy-validation> 
+<v-form ref="formularioinstalaciones" v-model="valid" lazy-validation> 
  
  <v-text-field
-            v-model="usuario.id"
+            v-model="instalacion.id"
             :rules="regla.obligatorio"
             label="Id"
             required
           ></v-text-field>
           <v-text-field
-            v-model="usuario.nombre"
+            v-model="instalacion.nombre"
             :rules="regla.obligatorio"
             label="Nombre"
             required
           ></v-text-field>
  <v-text-field
-            v-model="usuario.apellido"
+            v-model="instalacion.precio"
             :rules="regla.obligatorio"
-            label="Apellido"
+            label="Precio"
             required
           ></v-text-field>
-  <v-text-field
-            v-model="usuario.telefono"
-            :rules="regla.obligatorio"
-            label="Telefono"
-            required
-          ></v-text-field>     
-  <v-text-field
-            v-model="usuario.apartamento"
-            :rules="regla.obligatorio"
-            label="Apartamento"
-            required
-          ></v-text-field>            
- <v-text-field
-            v-model="usuario.email"
-            :rules="regla.email"
-            label="Email"
-            required
-          ></v-text-field>
-          <v-text-field
-            v-model="usuario.clave"
-            :rules="regla.obligatorio"
-            label="Clave"
-            required
-          ></v-text-field>
+
 
           
           <v-row
@@ -68,7 +45,7 @@
             @click="editar()"
             rounded
             >
-            editar usuario
+            editar instalacion
             </v-btn>
           </v-col>
 
@@ -88,12 +65,12 @@
 export default {
   
   async asyncData({ params }) {
-      let id_usuario=params.id;
-      return {id_usuario}
+      let id_instalacion=params.id;
+      return {id_instalacion}
     },
    data: () => ({
       valid: true,
-      usuario:{},
+      instalacion:{},
       regla:{
           obligatorio:[ v => !!v || ' Is required'],
           email:[v => /.+@.+\..+/.test(v) || 'E-mail  be valid'],
@@ -101,15 +78,15 @@ export default {
      
    }),
     beforeMount(){
-      this.getUsuario();
+      this.getinstalacion();
     },
    methods: {
-      async getUsuario()
+      async getinstalacion()
       {
           try {
-               let response= await this.$axios.get('http://localhost:3000/usuario/' + this.id_usuario );
+               let response= await this.$axios.get('http://localhost:3001/instalaciones/' + this.id_instalacion );
             console.log(response);
-            this.usuario=response.data
+            this.instalacion=response.data
           } catch (error) {
              this.$swal(" error");
           }
@@ -117,9 +94,9 @@ export default {
       },
     
       async editar () {
-        if (this.$refs.formularioUsuario.validate()) {
-              let usuario=Object.assign({},this.usuario);
-            let response= await this.$axios.put('http://localhost:3000/usuario/' + this.id_usuario,usuario);
+        if (this.$refs.formularioinstalaciones.validate()) {
+              let instalacion=Object.assign({},this.instalacion);
+            let response= await this.$axios.put('http://localhost:3001/instalaciones/' + this.id_instalacion,instalacion);
             console.log(response +"respuesta");
             this.$swal("se realizo con exito");
           }
