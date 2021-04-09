@@ -1,0 +1,42 @@
+{
+  "usuario": [
+    {
+      "id": "asxas",
+      "nombre": "axasx",
+      "apellido": "xasxas",
+      "telefono": "asxasasxsa",
+      "apartamento": "asx",
+      "email": "aasx@hotmail.com",
+      "clave": "34"
+    },
+    {
+      "id": "sxds",
+      "nombre": "2||",
+      "apellido": "x",
+      "telefono": "sx",
+      "apartamento": "ds",
+      "email": "cs@hotmail.com",
+      "clave": "23243"
+    },
+    {
+      "id": "5sd",
+      "nombre": "sdd",
+      "apellido": "sd",
+      "telefono": "sds",
+      "apartamento": "sd",
+      "email": "a@hotmail.com",
+      "clave": "34"
+    },
+    {
+      "id": "1",
+      "nombre": "pedro",
+      "apellido": "perez",
+      "telefono": "2343",
+      "apartamento": "12",
+      "email": "pedro@hotmail.com",
+      "clave": "123"
+    }
+  ],
+  "instalacion": [],
+  "reserva": []
+}
